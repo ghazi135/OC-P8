@@ -10,7 +10,7 @@ import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 
 @Configuration
-<span class="fc" id="L13">public class TourGuideModule {</span>
+<span class="nc" id="L13">public class TourGuideModule {</span>
 
     GpsUtilProxy       gpsUtilProxy;
 
@@ -18,11 +18,11 @@ import tourGuide.service.TourGuideService;
 
 
     @Bean
-<span class="fc" id="L21">    public RewardsService getRewardsService() { return new RewardsService(gpsUtilProxy, rewardCentralProxy); }</span>
+<span class="nc" id="L21">    public RewardsService getRewardsService() { return new RewardsService(gpsUtilProxy, rewardCentralProxy); }</span>
 
     @Bean
     public TourGuideService getTourGuideService() {
-<span class="fc" id="L25">        return new TourGuideService(gpsUtilProxy, getRewardsService());</span>
+<span class="nc" id="L25">        return new TourGuideService(gpsUtilProxy, getRewardsService());</span>
     }
 
 

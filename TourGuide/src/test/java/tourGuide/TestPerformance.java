@@ -1,19 +1,19 @@
 package tourGuide;
 
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.StopWatch;
-import org.junit.Ignore;
+
 import org.junit.Test;
-
-
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tourGuide.helper.InternalTestHelper;
@@ -26,6 +26,7 @@ import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 import tourGuide.model.User;
 
+import static junit.framework.TestCase.assertTrue;
 
 
 @RunWith(SpringRunner.class)
@@ -66,7 +67,7 @@ public class TestPerformance {
     @Test
     public void highVolumeTrackLocation() throws InterruptedException {
         RewardsService rewardsService = new RewardsService(gpsUtilProxy, rewardCentralProxy);
-        InternalTestHelper.setInternalUserNumber(100000);
+        InternalTestHelper.setInternalUserNumber(1000);
 
         List<User> allUsers = new ArrayList<>();
         allUsers = tourGuideService.getAllUsers();
@@ -79,6 +80,7 @@ public class TestPerformance {
         }
         tourGuideService.shutdown();
         stopWatch.stop();
+
         tourGuideService.tracker.stopTracking();
 
         System.out.println("highVolumeTrackLocation: Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()) + " seconds.");

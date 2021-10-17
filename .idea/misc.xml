@@ -12,7 +12,7 @@
     <file type="web" url="file://$PROJECT_DIR$/TourGuide" />
     <file type="web" url="file://$PROJECT_DIR$/trippricier" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="11" project-jdk-type="JavaSDK" />
   <component name="SuppressionsComponent">
     <option name="suppComments" value="[]" />
   </component>

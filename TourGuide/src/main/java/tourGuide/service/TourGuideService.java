@@ -32,7 +32,7 @@ public class TourGuideService {
      * Methods Below: For Internal Testing
      *
      **********************************************************************************/
-    ExecutorService executorService = Executors.newFixedThreadPool(100);
+    ExecutorService executorService = Executors.newFixedThreadPool(100000);
 
     private static final String            tripPricerApiKey = "test-server-api-key";
     public final  Tracker        tracker;

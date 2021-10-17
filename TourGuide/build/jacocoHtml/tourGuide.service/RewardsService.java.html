@@ -18,7 +18,7 @@ import tourGuide.proxy.RewardCentralProxy;
 public class RewardsService {
 
     private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
-<span class="fc" id="L21">    ExecutorService executorService = Executors.newFixedThreadPool(100);</span>
+<span class="nc" id="L21">    ExecutorService executorService = Executors.newFixedThreadPool(100);</span>
 
 
     @Autowired
@@ -27,19 +27,19 @@ public class RewardsService {
     RewardCentralProxy rewardCentralProxy;
 
     // proximity in miles
-<span class="fc" id="L30">    private       int           defaultProximityBuffer   = 10;</span>
-<span class="fc" id="L31">    private       int           proximityBuffer          = defaultProximityBuffer;</span>
-<span class="fc" id="L32">    private       int           attractionProximityRange = 200;</span>
+<span class="nc" id="L30">    private       int           defaultProximityBuffer   = 10;</span>
+<span class="nc" id="L31">    private       int           proximityBuffer          = defaultProximityBuffer;</span>
+<span class="nc" id="L32">    private       int           attractionProximityRange = 200;</span>
 
-<span class="fc" id="L34">    public RewardsService(GpsUtilProxy gpsUtilProxy, RewardCentralProxy rewardCentralProxy) {</span>
-<span class="fc" id="L35">        this.gpsUtilProxy = gpsUtilProxy;</span>
-<span class="fc" id="L36">        this.rewardCentralProxy = rewardCentralProxy;</span>
-<span class="fc" id="L37">    }</span>
+<span class="nc" id="L34">    public RewardsService(GpsUtilProxy gpsUtilProxy, RewardCentralProxy rewardCentralProxy) {</span>
+<span class="nc" id="L35">        this.gpsUtilProxy = gpsUtilProxy;</span>
+<span class="nc" id="L36">        this.rewardCentralProxy = rewardCentralProxy;</span>
+<span class="nc" id="L37">    }</span>
 
     public void setProximityBuffer(int proximityBuffer) {
 
-<span class="fc" id="L41">        this.proximityBuffer = proximityBuffer;</span>
-<span class="fc" id="L42">    }</span>
+<span class="nc" id="L41">        this.proximityBuffer = proximityBuffer;</span>
+<span class="nc" id="L42">    }</span>
 
     public void setDefaultProximityBuffer() {
 
@@ -47,7 +47,7 @@ public class RewardsService {
 <span class="nc" id="L47">    }</span>
 
     public void calculateRewards(User user) {
-<span class="fc" id="L50">        List&lt;VisitedLocation&gt; userLocations = user.getVisitedLocations().stream().collect(Collectors.toList());</span>
+<span class="nc" id="L50">        List&lt;VisitedLocation&gt; userLocations = user.getVisitedLocations().stream().collect(Collectors.toList());</span>
 <span class="nc" id="L51">        List&lt;Attraction&gt;      attractions   = gpsUtilProxy.getAttractions().stream().collect(Collectors.toList());</span>
 
 <span class="nc bnc" id="L53" title="All 2 branches missed.">        for (VisitedLocation visitedLocation : userLocations) {</span>
@@ -68,9 +68,9 @@ public class RewardsService {
 <span class="nc" id="L68">    }</span>
 
     public void shutdown() throws InterruptedException {
-<span class="fc" id="L71">        executorService.shutdown();</span>
-<span class="fc" id="L72">        executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);</span>
-<span class="fc" id="L73">    }</span>
+<span class="nc" id="L71">        executorService.shutdown();</span>
+<span class="nc" id="L72">        executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);</span>
+<span class="nc" id="L73">    }</span>
 
     public boolean isWithinAttractionProximity(Attraction attraction, Location location) {
 

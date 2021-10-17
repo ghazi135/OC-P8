@@ -12,14 +12,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-<span class="fc" id="L15">public class SwaggerConfig {</span>
+<span class="nc" id="L15">public class SwaggerConfig {</span>
     @Bean
     public Docket api() {
-<span class="fc" id="L18">        return new Docket(DocumentationType.SWAGGER_2)</span>
-<span class="fc" id="L19">                .select()</span>
-<span class="fc" id="L20">                .apis(RequestHandlerSelectors.basePackage(&quot;tourGuide&quot;))</span>
-<span class="fc" id="L21">                .paths(PathSelectors.regex(&quot;(?!/error.*).*&quot;))</span>
-<span class="fc" id="L22">                .build();</span>
+<span class="nc" id="L18">        return new Docket(DocumentationType.SWAGGER_2)</span>
+<span class="nc" id="L19">                .select()</span>
+<span class="nc" id="L20">                .apis(RequestHandlerSelectors.basePackage(&quot;tourGuide&quot;))</span>
+<span class="nc" id="L21">                .paths(PathSelectors.regex(&quot;(?!/error.*).*&quot;))</span>
+<span class="nc" id="L22">                .build();</span>
     }
 
 }
