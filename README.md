@@ -19,7 +19,7 @@ TourGuide Application - Microservices
 
 <h2> Architecture : </h2>
 
-![img.png](autodraw 10_10_2021.png)
+<img alt="img.png" height="250" src="autodraw 10_10_2021.png" width="250"/>
 
 <h2> endpoints Documentation </h2>
 
