@@ -22,6 +22,7 @@ import tourGuide.model.Location;
 import tourGuide.model.VisitedLocation;
 import tourGuide.proxy.GpsUtilProxy;
 import tourGuide.proxy.RewardCentralProxy;
+import tourGuide.proxy.TripPricerProxy;
 import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 import tourGuide.model.User;
@@ -58,25 +59,32 @@ public class TestPerformance {
     @Autowired
     RewardCentralProxy rewardCentralProxy;
     @Autowired
+    TripPricerProxy    tripPricerProxy;
+    @Autowired
     RewardsService     rewardsService;
     @Autowired
     TourGuideService tourGuideService;
-
+    ExecutorService executorService;
 
 
     @Test
     public void highVolumeTrackLocation() throws InterruptedException {
         RewardsService rewardsService = new RewardsService(gpsUtilProxy, rewardCentralProxy);
-        InternalTestHelper.setInternalUserNumber(1000);
-
+        //100 users 0 seconds
+        //1000  users 2 secconds
+        //5000 users 12 seconds
+        //10000 users 25 seconds
+        // 50000 users 251 seconds
+        // 100000 users 562 seconds
         List<User> allUsers = new ArrayList<>();
         allUsers = tourGuideService.getAllUsers();
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        TourGuideService tourGuideService = new TourGuideService(gpsUtilProxy, rewardsService);
+        TourGuideService tourGuideService = new TourGuideService(gpsUtilProxy,tripPricerProxy,rewardCentralProxy, rewardsService);
         for (User user : allUsers) {
             tourGuideService.trackUserLocationWithThread(user);
+
         }
         tourGuideService.shutdown();
         stopWatch.stop();
@@ -90,7 +98,11 @@ public class TestPerformance {
 
     @Test
     public void highVolumeGetRewards() throws InterruptedException {
-        InternalTestHelper.setInternalUserNumber(100000);
+        //100000 user 256 seconds
+        //50000 users 129 seconds
+        //10000 users 27 seconds
+        //5000 users  14 seconds
+        //1000 users 26 seconds
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         Attraction attraction = gpsUtilProxy.getAttractions().get(0);
@@ -102,11 +114,11 @@ public class TestPerformance {
         for (User user : allUsers) {
             assertTrue(user.getUserRewards().size() > 0);
         }
-
         stopWatch.stop();
         tourGuideService.tracker.stopTracking();
         System.out.println("highVolumeGetRewards: Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()) + " seconds.");
         assertTrue(TimeUnit.MINUTES.toSeconds(20) >= TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()));
+
     }
 
 

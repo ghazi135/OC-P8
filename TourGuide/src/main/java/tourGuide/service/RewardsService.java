@@ -1,5 +1,6 @@
 package tourGuide.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,18 +19,18 @@ import tourGuide.proxy.RewardCentralProxy;
 public class RewardsService {
 
     private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
-    ExecutorService executorService = Executors.newFixedThreadPool(100);
+    ExecutorService executorService = Executors.newFixedThreadPool(1000);
 
 
-    @Autowired
-    GpsUtilProxy gpsUtilProxy;
-    @Autowired
-    RewardCentralProxy rewardCentralProxy;
+
+    private final GpsUtilProxy gpsUtilProxy;
+
+    private final RewardCentralProxy rewardCentralProxy;
 
     // proximity in miles
-    private       int           defaultProximityBuffer   = 10;
-    private       int           proximityBuffer          = defaultProximityBuffer;
-    private       int           attractionProximityRange = 200;
+    private final int defaultProximityBuffer = 10;
+    private       int proximityBuffer          = defaultProximityBuffer;
+    private final int attractionProximityRange = 200;
 
     public RewardsService(GpsUtilProxy gpsUtilProxy, RewardCentralProxy rewardCentralProxy) {
         this.gpsUtilProxy = gpsUtilProxy;
@@ -47,8 +48,8 @@ public class RewardsService {
     }
 
     public void calculateRewards(User user) {
-        List<VisitedLocation> userLocations = user.getVisitedLocations().stream().collect(Collectors.toList());
-        List<Attraction>      attractions   = gpsUtilProxy.getAttractions().stream().collect(Collectors.toList());
+        List<VisitedLocation> userLocations = new ArrayList<>(user.getVisitedLocations());
+        List<Attraction>      attractions   = new ArrayList<>(gpsUtilProxy.getAttractions());
 
         for (VisitedLocation visitedLocation : userLocations) {
             for (Attraction attraction : attractions) {

@@ -37,21 +37,23 @@ public class TourGuideService {
     private static final String            tripPricerApiKey = "test-server-api-key";
     public final  Tracker        tracker;
     private final RewardsService rewardsService;
-    @Autowired
-    GpsUtilProxy gpsUtilProxy;
-    @Autowired
-    RewardCentralProxy rewardCentralProxy;
-    @Autowired
-    TripPricerProxy tripPricerProxy;
+
+    private final GpsUtilProxy gpsUtilProxy;
+
+    private final RewardCentralProxy rewardCentralProxy;
+
+    private final TripPricerProxy   tripPricerProxy;
     // Database connection will be used for external users, but for testing purposes internal users are provided and stored in memory
-    private final        Map<String, User> internalUserMap  = new HashMap<>();
+    private final Map<String, User> internalUserMap  = new HashMap<>();
     boolean testMode = true;
     private       Logger         logger     = LoggerFactory.getLogger(TourGuideService.class);
 
-    public TourGuideService(GpsUtilProxy gpsUtilProxy, RewardsService rewardsService) {
+    public TourGuideService(GpsUtilProxy gpsUtilProxy,TripPricerProxy tripPricerProxy, RewardCentralProxy rewardCentralProxy, RewardsService rewardsService) {
 
         this.gpsUtilProxy        = gpsUtilProxy;
         this.rewardsService = rewardsService;
+        this.tripPricerProxy = tripPricerProxy;
+        this.rewardCentralProxy = rewardCentralProxy;
 
         if (testMode) {
             logger.info("TestMode activé");

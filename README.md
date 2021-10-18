@@ -16,7 +16,7 @@ TourGuide Application - Microservices
 * **`GpsUtil`** : Application used to get Locations (**localhost:8081**) 
 * **`RewardCentral`** : Application used to get user rewards  
   (**localhost:8082**) 
-* **`TripPricer`** : Application used  get the prices of attractions and providers available 
+* **`TripPricer`** : Application used to get the prices of attractions and providers available 
   (**localhost:8083**)
 
 <h2> Architecture : </h2>

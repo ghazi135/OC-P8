@@ -19,6 +19,7 @@ import tourGuide.model.Attraction;
 import tourGuide.model.Location;
 import tourGuide.proxy.GpsUtilProxy;
 import tourGuide.proxy.RewardCentralProxy;
+import tourGuide.proxy.TripPricerProxy;
 import tourGuide.service.RewardsService;
 import tourGuide.service.TourGuideService;
 import tourGuide.model.User;
@@ -35,6 +36,8 @@ public class TestRewardsService {
 
     @Autowired
     RewardCentralProxy rewardCentralProxy;
+    @Autowired
+    TripPricerProxy    tripPricerProxy;
 
     @Autowired
     TourGuideService tourGuideService;
@@ -46,7 +49,7 @@ public class TestRewardsService {
         RewardsService rewardsService = new RewardsService(gpsUtilProxy, rewardCentralProxy);
 
         InternalTestHelper.setInternalUserNumber(0);
-        TourGuideService tourGuideService = new TourGuideService(gpsUtilProxy, rewardsService);
+        TourGuideService tourGuideService = new TourGuideService(gpsUtilProxy, tripPricerProxy, rewardCentralProxy, rewardsService);
 
         User       user       = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
         Attraction attraction = gpsUtilProxy.getAttractions().get(0);
