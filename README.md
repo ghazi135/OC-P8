@@ -7,6 +7,8 @@ TourGuide Application - Microservices
 * Junit
 * Mockito
 * Docker
+* Spring Boot
+* Rest Api
 
 <h2>Microservices : </h2>
 
