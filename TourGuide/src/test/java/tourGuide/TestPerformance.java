@@ -103,6 +103,7 @@ public class TestPerformance {
         //10000 users 27 seconds
         //5000 users  14 seconds
         //1000 users 26 seconds
+        //100 users 1 seconds
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         Attraction attraction = gpsUtilProxy.getAttractions().get(0);
